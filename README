@@ -1,0 +1,105 @@
+# Reinforcement Learning in FourRooms Domain
+
+This project implements Q-learning agents in the classic FourRooms grid environment to explore different package collection scenarios, each increasing in complexity. All agents use either a fixed or decaying epsilon-greedy exploration strategy and can operate in both deterministic and stochastic environments.
+
+---
+
+> # Works on Windows (GITBash)
+
+## Project Structure
+
+| File           | Description                                                                   |
+|----------------|-------------------------------------------------------------------------------|
+| `FourRooms.py` | Predefined environment (do not modify).                                       |
+| `Scenario1.py` | Agent learns to collect **1 package**.                                        |
+| `Scenario2.py` | Agent learns to collect **3 packages** in any order.                          |
+| `Scenario3.py` | Agent learns to collect **3 color-coded packages (R, G, B) in strict order**. |
+
+---
+
+## Exploration Strategies
+
+- **Scenario 1** supports both:
+  - **Fixed Epsilon (ε = 0.1)** — constant exploration.
+  - **Decaying Epsilon (ε = 1.0 → 0.05)** — gradually shifts from exploration to exploitation.
+
+- **Scenario 2 & 3** use:
+  - **Decaying Epsilon only** — suitable for complex, multi-package environments.
+
+---
+
+## Run Modes
+
+### Deterministic Mode
+
+```bash
+python Scenario1.py
+python Scenario2.py
+python Scenario3.py
+````
+
+### Stochastic Mode (20% action randomness)
+
+```bash
+python Scenario1.py --stochastic
+python Scenario2.py --stochastic
+python Scenario3.py --stochastic
+```
+
+---
+
+## Outputs
+
+Each script will generate:
+
+* `learning_curves_both_<mode>.png` — learning curve for both strategies (if applicable)
+* `final_path_<strategy>_<mode>.png` — agent's final path in the environment
+* Printed logs of the final agent run:
+
+  ```plaintext
+  [Step 4] Action: RIGHT -> (5, 6) | Grid: RED | Packages left: 2
+  Package collected!
+  Reached terminal state
+  ```
+
+---
+
+## 📦 Requirements
+
+* Python 3.x
+* `matplotlib`
+* `numpy`
+
+Install dependencies with:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Makefile Support
+> # Works on Windows (GIT Bash)
+
+Use the included `Makefile` to automate setup and execution.
+
+### Setup & Install Dependencies
+
+```bash
+make setup
+```
+
+### Run Scenarios
+
+```bash
+make run1           # Scenario 1 (Deterministic)
+make run2-stoch     # Scenario 2 (Stochastic)
+make run3           # Scenario 3 (Deterministic)
+```
+
+### Clean Environment
+
+```bash
+make clean
+```
+---
